@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 普通页面背景 -->
+    <color name="bg_common">#F0F0F0</color>
+
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="color_theme">#65d233</color>
+    <color name="black">#000000</color>
+    <color name="black_rip_80">#80000000</color>
+
+    <!-- 文本色系 -->
+    <color name="tv_color_33">#333333</color>
+    <color name="tv_color_66">#666666</color>
+    <color name="tv_color_99">#999999</color>
+    <color name="tv_color_cc">#cccccc</color>
+    <color name="tv_color_4d4d4d">#4d4d4d</color>
+    <color name="tv_color_808080">#808080</color>
+
+    <color name="bg_line">#cccccc</color>
+</resources>

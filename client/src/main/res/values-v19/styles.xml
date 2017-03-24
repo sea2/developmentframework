@@ -1,0 +1,12 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!-- 在主题（theme）中设置windowTranslucentStatus为true将填充顶部的状态栏区域。
+        （有虚拟按键的设备上）设置windowTranslucentNavigation为true将填充底部导航栏的区域。-->
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <!--<item name="android:statusBarColor">#33333333</item>-->
+    </style>
+</resources>

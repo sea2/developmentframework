@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    dexOptions {
+        javaMaxHeapSize "2G"
+    }
+    lintOptions {
+        abortOnError false
+    }
+    defaultConfig {
+        applicationId "com.xcm91.relation"
+        minSdkVersion 10
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        manifestPlaceholders << [APP_NAME: "版本"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            //            applicationIdSuffix ".test"
+            manifestPlaceholders << [APP_NAME: "版本-TEST"]
+            signingConfig signingConfigs.debug
+        }
+        release {
+            //动态修改BuildConfig类中属性
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+
+        内部测试_1 {
+            minSdkVersion 10
+            manifestPlaceholders << [CHANNEL_KEY: "1"]
+            manifestPlaceholders << [CHANNEL_VALUE: "测试"]
+            manifestPlaceholders << [APP_NAME: "版本-TEST"]
+            applicationId 'com.xcm91.relation.test'
+            signingConfig signingConfigs.debug
+        }
+
+        官方渠道_10000 {
+            manifestPlaceholders << [CHANNEL_KEY: "10000"]
+            manifestPlaceholders << [CHANNEL_VALUE: "官方"]
+        }
+    }
+
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
+    compile 'com.android.support:design:25.3.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    compile project(':okhttputils')
+    compile 'com.google.code.gson:gson:2.7'
+    compile files('libs/universal-image-loader-1.9.4.jar')
+}
