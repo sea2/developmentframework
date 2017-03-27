@@ -3,4 +3,20 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="common_dialog_button_padding">10dp</dimen>
+
+
+    <!-- 对话框 -->
+    <dimen name="dialog_width">300dp</dimen>
+    <dimen name="dialog_content_size">16sp</dimen>
+    <dimen name="dialog_btn_size">15sp</dimen>
+    <dimen name="dialog_title_size">17sp</dimen>
+    <dimen name="dialog_padding_bottom">20dp</dimen>
+    <dimen name="dialog_padding_lr">20dp</dimen>
+    <dimen name="dialog_padding_top">10dp</dimen>
+    <dimen name="dialog_content_top">15dp</dimen>
+    <dimen name="dialog_btn_top">30dp</dimen>
+    <dimen name="dialog_btn_width">120dp</dimen>
+    <dimen name="dialog_btn_padding">11dp</dimen>
+    <dimen name="dialog_btn_sp">10dp</dimen>
 </resources>

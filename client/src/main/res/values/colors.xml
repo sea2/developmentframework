@@ -18,5 +18,7 @@
     <color name="tv_color_4d4d4d">#4d4d4d</color>
     <color name="tv_color_808080">#808080</color>
 
+    <!-- 分隔线背景 -->
+    <color name="bg_split_line">#e1e1e1</color>
     <color name="bg_line">#cccccc</color>
 </resources>

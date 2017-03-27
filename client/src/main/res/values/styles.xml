@@ -26,4 +26,13 @@
         <!--浮现在activity之上背景模糊-->
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+
+
+    <style name="commonDialog" parent="@style/dialog">
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
 </resources>
