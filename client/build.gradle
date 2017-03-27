@@ -75,4 +75,5 @@ dependencies {
     compile project(':okhttputils')
     compile 'com.google.code.gson:gson:2.7'
     compile files('libs/universal-image-loader-1.9.4.jar')
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

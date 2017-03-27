@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xcm91.relation.R;
+import com.xcm91.relation.activity.Main2Activity;
 import com.xcm91.relation.common.BaseFragment;
 
 /**
@@ -25,6 +26,7 @@ public class OneFragment extends BaseFragment {
             Log.e(TAG, "oneFragment--onCreateView");
             isPrepared = true;
             lazyLoad();
+
         }
         return view;
     }
@@ -35,7 +37,7 @@ public class OneFragment extends BaseFragment {
         if (!isPrepared || !isVisible) {
             return;
         }
-
+        startAc(Main2Activity.class);
     }
 
     @Override

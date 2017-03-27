@@ -2,15 +2,22 @@ package com.xcm91.relation.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.xcm91.relation.R;
 import com.xcm91.relation.common.BaseActivity;
 import com.xcm91.relation.config.MyConstants;
 import com.xcm91.relation.config.UrlConstans;
+import com.xcm91.relation.eventbus.BaseEvent;
+import com.xcm91.relation.eventbus.MessageEvent;
 import com.xcm91.relation.net.ResponseNewListener;
 import com.xcm91.relation.util.LogManager;
 import com.xcm91.relation.util.SharePreferenceUtil;
 import com.xcm91.relation.view.dialog.CommonDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -23,11 +30,13 @@ import rx.schedulers.Schedulers;
 
 public class Main2Activity extends BaseActivity {
     private Subscription subscription = null;
+    private android.widget.TextView tvtest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        this.tvtest = (TextView) findViewById(R.id.tv_test);
 
 
         //  ImageLoader.getInstance().displayImage(accountresultInfo.getHead_portrait(), mIv_head_portrait, DisplayImageOptionsUtil.getDisplayImageOptions(-1, true, true));
@@ -87,7 +96,7 @@ public class Main2Activity extends BaseActivity {
                     public void onCompleted() {
                         Log.d(TAG, "onCompleted");
                         dismissProgressDialog();
-                        startAc(Main2Activity.class);
+                        startAc(OneActivity.class);
                     }
 
                     @Override
@@ -101,13 +110,27 @@ public class Main2Activity extends BaseActivity {
                     }
                 });
 
+
+        EventBus.getDefault().register(this);
+        // EventBus.getDefault().post(new MessageEvent("Hello everyone!"));
     }
 
+
+    /* ThreadMode.MAIN  //主线程
+     ThreadMode.BACKGROUND//后台线程
+     ThreadMode.ASYNC //开辟新独立线程，用来执行耗时操作，例如网络访问*/
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onShowMessageEvent(BaseEvent messageEvent) {
+        if (messageEvent instanceof MessageEvent) {
+            tvtest.setText(((MessageEvent) messageEvent).message);
+        }
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (subscription != null) subscription.unsubscribe();
+        EventBus.getDefault().unregister(this);
     }
 
 }

@@ -20,12 +20,25 @@ public class ToastShow {
     public ToastShow(Context context) {
         if (context != null) {
             if (toast == null) {
-                this.toast = new Toast(context);
+                this.toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
             }
             this.toast.setGravity(Gravity.CENTER, 0, 0);
         }
     }
 
+    public ToastShow(Context context, boolean isLong) {
+        if (isLong) this.toast = Toast.makeText(context, null, Toast.LENGTH_LONG);
+        else this.toast = Toast.makeText(context, null, Toast.LENGTH_SHORT);
+        this.toast.setGravity(Gravity.CENTER, 0, 0);
+    }
+
+    public Toast getToast() {
+        return toast;
+    }
+
+    public void setToast(Toast toast) {
+        this.toast = toast;
+    }
 
     // 消息框的显现
     public void show(CharSequence text) {
@@ -35,6 +48,7 @@ public class ToastShow {
             toast.setView(view);
             toast.setText(text);
             if (view.isShown()) {
+                // toast.setDuration(Constant.TOAST_TIME);
                 toast.setDuration(Toast.LENGTH_LONG);
             }
             toast.show();
