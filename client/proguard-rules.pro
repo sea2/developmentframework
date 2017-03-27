@@ -47,6 +47,9 @@
     public static <fields>;
 }
 
+#如果有引用v4或者v7包，需添加
+-keep public class * extends android.support.**
+
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
@@ -97,61 +100,60 @@
 
 }
 
-# # -------------------------------------------
-# #  ######## greenDao混淆  ##########
-# # -------------------------------------------
--keep class de.greenrobot.dao.** {*;}
--keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
-    public static java.lang.String TABLENAME;
-}
--keep class **$Properties
 
 # # -------------------------------------------
 # #  ######## EventBus混淆  ##########
 # # -------------------------------------------
--keep class de.greenrobot.event.** {*;}
+-keepattributes *Annotation*
 -keepclassmembers class ** {
-    public void onEvent*(**);
-    public void onEventMainThread*(**);
+    @org.greenrobot.eventbus.Subscribe <methods>;
 }
-#-libraryjars /libs/jpush-android-2.1.0.jar
-#-libraryjars /libs/bugly_crash_release__2.1.jar
-
--keep class cn.sharesdk.**{*;}
--keep class com.sina.**{*;}
--keep class **.R$* {*;}
--keep class **.R{*;}
--dontwarn cn.sharesdk.**
--dontwarn **.R$*
-
--dontwarn android.os.**
--dontwarn com.android.internal.**
-
--keepattributes SourceFile,LineNumberTable
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
 
 # # -------------------------------------------
-# #  ######## 极光混淆  ##########
+# #  ######## okhttp混淆  ##########
 # # -------------------------------------------
--dontwarn cn.jpush.**
--keep class cn.jpush.** { *; }
+#okhttputils
+-dontwarn com.zhy.http.**
+-keep class com.zhy.http.**{*;}
+#okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+#okio
+-dontwarn okio.**
+-keep class okio.**{*;}
 
-# bugly
--dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.**{*;}
-# # -------------------------------------------
-# #  ######## Modle 包下文件不混淆  ##########
-# # -------------------------------------------
--keep class com.xcm91.xiaocaimi.model.** {*;}
--keep class com.xcm91.xiaocaimi.others.model.** {*;}
--keep class com.google.** {*;}
--dontwarn com.google.**
--dontwarn com.xcm91.xiaocaimi.model.**
--dontwarn com.xcm91.xiaocaimi.others.model.**
--keep class com.xcm91.xiaocaimi.others.database.** {*;}
--keep class android.support.** {*;}
--keep class com.nostra13.universalimageloader.** {*;}
--keep class de.greenrobot.** {*;}
 
+
+# # -------------------------------------------
+# #  ######## andfix热修复  ##########
+# # -------------------------------------------
+-keep class * extends java.lang.annotation.Annotation
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+-keep class com.alipay.euler.andfix.** { *; }
+
+
+# # -------------------------------------------
+# #  ######## rxjava1热修复  ##########
+# # -------------------------------------------
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+ long producerIndex;
+ long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+ rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+
+
+# # -------------------------------------------
+# #  ######## gson热修复  ##########
+# # -------------------------------------------
 -keepattributes *Annotation*
 -keepattributes Exceptions, Signature, InnerClasses
 -keepattributes SourceFile,LineNumberTable
@@ -160,48 +162,9 @@
 -keep class com.google.gson.** { *; }
 
 
-#TONGDUN
--dontwarn android.os.**
--dontwarn com.android.internal.**
--keep class cn.tongdun.android.**{*;}
 
-
-#udesk
--keep class udesk.** {*;}
--keep class cn.udesk.**{*; }
-#七牛
--keep class com.qiniu.android.dns.** {*; }
--keep class okhttp3.** {*;}
--keep class okio.** {*;}
--keep class com.qiniu.android.** {*;}
-#smack
--keep class org.jxmpp.** {*;}
--keep class de.measite.** {*;}
--keep class org.jivesoftware.** {*;}
--keep class org.xmlpull.** {*;}
-#Android M 权限
--keep class rx.** {*;}
--keep class com.tbruyelle.rxpermissions.** {*;}
-
- #其它
--keep class com.tencent.bugly.** {*; }
--keep class com.nostra13.universalimageloader.** {*;}
--keep class de.hdodenhof.circleimageview.** {*;}
- #混淆和3.2.1的时候是不一样的
-
-
-#talkingdata
--dontwarn com.tendcloud.tenddata.**
--keep class com.tendcloud.** {*;}
--keep public class com.tendcloud.tenddata.** { public protected *;}
--keepclassmembers class com.tendcloud.tenddata.**{
-public void *(***);
-}
--keep class com.talkingdata.sdk.TalkingDataSDK {public *;}
--keep class com.apptalkingdata.** {*;}
-
--keep class * extends java.lang.annotation.Annotation
--keepclasseswithmembernames class * {
-    native <methods>;
-}
--keep class com.alipay.euler.andfix.** { *; }
+# # -------------------------------------------
+# #  ######## universal-image-loader混淆  ##########
+# # -------------------------------------------
+-dontwarn com.nostra13.universalimageloader.**
+-keep class com.nostra13.universalimageloader.** { *; }

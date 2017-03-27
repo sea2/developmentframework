@@ -18,6 +18,23 @@ android {
         manifestPlaceholders << [APP_NAME: "版本"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        debug {
+            storeFile = file("client.jks")
+            storePassword "client"
+            keyAlias "client"
+            keyPassword "client"
+        }
+
+        release {
+            storeFile = file("client.jks")
+            storePassword "client"
+            keyAlias "client"
+            keyPassword "client"
+        }
+    }
+
     buildTypes {
 
         debug {
@@ -30,6 +47,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
+            signingConfig signingConfigs.release
             //动态修改BuildConfig类中属性
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true
