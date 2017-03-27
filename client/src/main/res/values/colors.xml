@@ -21,4 +21,9 @@
     <!-- 分隔线背景 -->
     <color name="bg_split_line">#e1e1e1</color>
     <color name="bg_line">#cccccc</color>
+
+
+    <!-- 主页面底栏字体颜色 -->
+    <color name="footer_text_color_normal">#343434</color>
+    <color name="footer_text_color_selected">#65d233</color>
 </resources>
