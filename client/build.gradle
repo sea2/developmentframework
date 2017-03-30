@@ -47,13 +47,13 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.release
             //动态修改BuildConfig类中属性
             buildConfigField "boolean", "LOG_DEBUG", "false"
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -94,4 +94,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile files('libs/universal-image-loader-1.9.4.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile project(path: ':pulltorefresh')
 }

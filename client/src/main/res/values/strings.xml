@@ -10,4 +10,18 @@
     <string name="main_navigation_im">选房清单</string>
     <string name="main_navigation_interest">看房日程</string>
     <string name="main_navigation_user">我的</string>
+
+
+    <!-- XListView -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_footer_hint_loading">加载中...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开加载更多</string>
+
+
+
+
 </resources>
